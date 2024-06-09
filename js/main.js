@@ -109,19 +109,12 @@ function login() {
     for (var i = 0; i < signUpArray.length; i++) {
         if (signUpArray[i].email.toLowerCase() == email.toLowerCase() && signUpArray[i].password.toLowerCase() == password.toLowerCase()) {
             localStorage.setItem('sessionUsername', signUpArray[i].name)
-            if (baseURL == '/') {
-                var url = 'https://' + location.hostname + '/login.html'
-                // location.replace('https://' + location.hostname + '/login.html')
+                // var url = 'https://' + location.hostname + '/login.html'
+                location.replace('https://m-elshafei.github.io/simple-Login/login.html')
 
-            } else {
-                var url = baseURL + '/login.html'
-
-                // location.replace(baseURL + '/login.html')
-
-            }
-            alert(url)
-            alert(baseURL)
-            location.replace(url)
+            // alert(url)
+            // alert(baseURL)
+            // location.replace(url)
 
         } else {
             document.getElementById('incorrect').innerHTML = '<span class="p-2 text-danger">incorrect email or password</span>'
