@@ -99,14 +99,26 @@ function isLoginEmpty() {
     }
 }
 
+// Ensure these variables are defined and populated correctly
+var signUpArray = [
+    { email: 'example@example.com', password: 'password123', name: 'John Doe' }
+];
+var baseURL = '/';
+
+function isLoginEmpty() {
+    var email = document.getElementById('signinEmail').value.trim();
+    var password = document.getElementById('signinPassword').value.trim();
+    return email !== '' && password !== '';
+}
+
 function login() {
     if (!isLoginEmpty()) {
         document.getElementById('incorrect').innerHTML = '<span class="text-danger m-3">All inputs are required</span>';
         return false;
     }
 
-    var password = signinPassword.value;
-    var email = signinEmail.value;
+    var password = document.getElementById('signinPassword').value;
+    var email = document.getElementById('signinEmail').value;
     var found = false;
 
     for (var i = 0; i < signUpArray.length; i++) {
@@ -116,7 +128,7 @@ function login() {
             localStorage.setItem('sessionUsername', signUpArray[i].name);
             
             if (baseURL === '/') {
-                location.replace('https://' + location.hostname + '/login.html');
+                location.replace('https://m-elshafei.github.io/simple-Login' + '/login.html');
             } else {
                 location.replace(baseURL + '/login.html');  // Adjusted to a single slash
             }
@@ -130,6 +142,10 @@ function login() {
         document.getElementById('incorrect').innerHTML = '<span class="p-2 text-danger">Incorrect email or password</span>';
     }
 }
+
+// Attach the login function to a button click event or form submission
+// document.getElementById('loginButton').addEventListener('click', login);
+
 
 
 
