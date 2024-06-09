@@ -128,7 +128,7 @@ function login() {
             localStorage.setItem('sessionUsername', signUpArray[i].name);
             
             if (baseURL === '/') {
-                location.replace('https://m-elshafei.github.io/simple-Login' + '/login.html');
+                location.replace('https://' + location.hostname + '/login.html');
             } else {
                 location.replace(baseURL + '/login.html');  // Adjusted to a single slash
             }
