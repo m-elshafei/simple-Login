@@ -100,28 +100,37 @@ function isLoginEmpty() {
 }
 
 function login() {
-    if (isLoginEmpty() == false) {
-        document.getElementById('incorrect').innerHTML = '<span class="text-danger m-3">All inputs is required</span>'
-        return false
+    if (!isLoginEmpty()) {
+        document.getElementById('incorrect').innerHTML = '<span class="text-danger m-3">All inputs are required</span>';
+        return false;
     }
-    var password = signinPassword.value
-    var email = signinEmail.value
+
+    var password = signinPassword.value;
+    var email = signinEmail.value;
+    var found = false;
+
     for (var i = 0; i < signUpArray.length; i++) {
-        if (signUpArray[i].email.toLowerCase() == email.toLowerCase() && signUpArray[i].password.toLowerCase() == password.toLowerCase()) {
-            localStorage.setItem('sessionUsername', signUpArray[i].name)
-            if (baseURL == '/') {
-                location.replace('https://' + location.hostname +':5500' + '/login.html')
-
+        if (signUpArray[i].email.toLowerCase() === email.toLowerCase() &&
+            signUpArray[i].password.toLowerCase() === password.toLowerCase()) {
+            
+            localStorage.setItem('sessionUsername', signUpArray[i].name);
+            
+            if (baseURL === '/') {
+                location.replace('https://' + location.hostname + '/login.html');
             } else {
-                location.replace(baseURL + '/login.html')
-
+                location.replace(baseURL + '/login.html');  // Adjusted to a single slash
             }
-        } else {
-            document.getElementById('incorrect').innerHTML = '<span class="p-2 text-danger">incorrect email or password</span>'
+            
+            found = true;
+            break;  // Exit the loop once a match is found
         }
     }
 
+    if (!found) {
+        document.getElementById('incorrect').innerHTML = '<span class="p-2 text-danger">Incorrect email or password</span>';
+    }
 }
+
 
 
 
