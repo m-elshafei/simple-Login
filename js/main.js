@@ -110,12 +110,19 @@ function login() {
         if (signUpArray[i].email.toLowerCase() == email.toLowerCase() && signUpArray[i].password.toLowerCase() == password.toLowerCase()) {
             localStorage.setItem('sessionUsername', signUpArray[i].name)
             if (baseURL == '/') {
-                location.replace('https://' + location.hostname + '/login.html')
+                var url = 'https://' + location.hostname + '/login.html'
+                // location.replace('https://' + location.hostname + '/login.html')
 
             } else {
-                location.replace(baseURL + '/login.html')
+                var url = baseURL + '/login.html'
+
+                // location.replace(baseURL + '/login.html')
 
             }
+            alert(url)
+            alert(baseURL)
+            location.replace(url)
+
         } else {
             document.getElementById('incorrect').innerHTML = '<span class="p-2 text-danger">incorrect email or password</span>'
         }
